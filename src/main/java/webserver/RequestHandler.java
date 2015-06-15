@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.Files;
 
 public class RequestHandler extends Thread {
 	private static final Logger log = LoggerFactory.getLogger(RequestHandler.class);
@@ -25,11 +25,12 @@ public class RequestHandler extends Thread {
 		log.debug("New Client Connect! Connected IP : {}, Port : {}", connection.getInetAddress(), connection.getPort());
 		
 		try (InputStream in = connection.getInputStream(); OutputStream out = connection.getOutputStream()) {
-			// TODO 사용자 요청에 대한 처리는 이 곳에 구현하면 된다.
 			DataOutputStream dos = new DataOutputStream(out);
-			//byte[] body = "Hello World".getBytes();
-			String filename = "/lec11a.pdf";
-			byte[] body = Files.readAllBytes(new File("./webapp" + filename).toPath());
+			
+			// webapp폴더 안에 있는 다운로드할 파일 
+			String downloadFile = "/Head-First-Java-2nd-edition.pdf";
+			byte[] body = Files.readAllBytes(new File("./downloadFile" + downloadFile).toPath());
+			
 			response200Header(dos, body.length);
 			responseBody(dos, body);
 		} catch (IOException e) {
