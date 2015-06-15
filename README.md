@@ -1,5 +1,4 @@
-web-application-server
-======================
-
-웹 애플리케이션 서버 실습을 위한 뼈대
-# network
+- eclipse로 import한 후에 Maven 빌드 도구를 활용해 eclipse 프로젝트로 변환한다. (mvn eclipse:clean eclipse:eclipse)
+- 빌드가 성공하면 새로고침(fn + f5)을 한다.
+- WebServer를 실행한 한다.
+- 브라우저에서 http://localhost:8080으로 접속하면 downloadFile폴더안에 있는 pdf파일을 다운받을 수 있다.
